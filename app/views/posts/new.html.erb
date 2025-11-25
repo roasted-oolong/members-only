@@ -2,7 +2,6 @@
 
 <% if user_signed_in? %>
   <p>Welcome, <%= current_user.email %>!</p>
-  <%= link_to "Create New Post", new_post_path %>
   <%= button_to "Sign Out", destroy_user_session_path, method: :delete, form: { "data-turbo" => "false" } %>
 
     <%= form_with model: @post do |form| %>
