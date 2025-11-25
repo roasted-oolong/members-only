@@ -1,1 +1,8 @@
-<h1>Root Page</h1>
+<h1>Home Page</h1>
+
+<% if user_signed_in? %>
+  <p>Welcome, <%= current_user.email %>!</p>
+  <%= link_to "Create New Post", new_post_path %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path %>
+<% end %>
