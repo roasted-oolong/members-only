@@ -4,7 +4,9 @@
 <% @post.each do |post| %>
 <div>
     <h3><%= post.title %></h3>
-    <p>Posted by: <%= post.user.email %></p>
+    <% if user_signed_in? %>
+      <p>Posted by: <%= post.user.email %></p>
+    <% end %>
 </div>
 <hr>
 <% end %>
