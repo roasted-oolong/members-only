@@ -1,23 +1,31 @@
 <h1>New Post</h1>
 
-<%= form_with model: @post do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-    <% @post.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+<% if user_signed_in? %>
+  <p>Welcome, <%= current_user.email %>!</p>
+  <%= link_to "Create New Post", new_post_path %>
+  <%= button_to "Sign Out", destroy_user_session_path, method: :delete, form: { "data-turbo" => "false" } %>
 
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
-    <% @post.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+    <%= form_with model: @post do |form| %>
+    <div>
+        <%= form.label :title %><br>
+        <%= form.text_field :title %>
+        <% @post.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+        <% end %>
+    </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+    <div>
+        <%= form.label :body %><br>
+        <%= form.text_area :body %><br>
+        <% @post.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message %></div>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+    <% end %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path %>
 <% end %>

@@ -1,17 +1,10 @@
-<h1>Home Page</h1>
+<h1>All Posts</h1>
 
-<% if user_signed_in? %>
-  <p>Welcome, <%= current_user.email %>!</p>
-  <%= link_to "Create New Post", new_post_path %>
-
-  <h2>Posts</h2>
-  <% @post.each do |post| %>
-    <div>
-      <h3><%= post.title %></h3>
-      <p>Posted by: <%= post.user.email %></p>
-    </div>
-    <hr>
-  <% end %>
-<% else %>
-  <%= link_to "Sign In", new_user_session_path %>
+<h2>Posts</h2>
+<% @post.each do |post| %>
+<div>
+    <h3><%= post.title %></h3>
+    <p>Posted by: <%= post.user.email %></p>
+</div>
+<hr>
 <% end %>
